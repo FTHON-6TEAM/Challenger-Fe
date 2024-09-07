@@ -2,15 +2,13 @@
   "env": {
     "browser": true,
     "es6": true,
-    "node": true,
-    "jest": true
+    "node": true
   },
   "extends": [
     "next/core-web-vitals",
     "plugin:react/recommended",
     "plugin:@next/next/recommended",
     "plugin:prettier/recommended",
-    "plugin:jest-dom/recommended",
     "eslint:recommended",
     "prettier"
   ],
