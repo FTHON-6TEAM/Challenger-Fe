@@ -1,7 +1,9 @@
 import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
-import ResetCSS from '@/styles/ResetCSS';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from '../styles/theme';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,11 +19,11 @@ const queryClient = new QueryClient({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <ResetCSS />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <QueryClientProvider client={queryClient}>
         <Component {...pageProps} />
       </QueryClientProvider>
-    </>
+    </ThemeProvider>
   );
 }

@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import Head from 'next/head';
 
 export default function Home() {
@@ -10,6 +11,9 @@ export default function Home() {
       </Head>
       <div>
         <div>Challenger!</div>
+        <Typography variant="h3" color="primary.main">
+          test
+        </Typography>
       </div>
     </>
   );
