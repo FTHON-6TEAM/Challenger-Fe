@@ -1,11 +1,7 @@
+import { Html, Head, Main, NextScript } from 'next/document';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import type { Metadata } from 'next';
+import ResetCSS from '@/styles/ResetCSS';
 import React from 'react';
-
-export const metadata: Metadata = {
-  title: 'Challenger',
-  description: 'Everyone can create and challenge challengers.',
-};
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,16 +15,14 @@ const queryClient = new QueryClient({
   },
 });
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Document() {
   return (
-    <html lang="ko">
+    <Html lang="en">
+      <Head />
       <body>
-        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+        <Main />
+        <NextScript />
       </body>
-    </html>
+    </Html>
   );
 }
