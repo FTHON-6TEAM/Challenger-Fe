@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { Metadata } from 'next';
 import React from 'react';
 
@@ -6,6 +7,18 @@ export const metadata: Metadata = {
   description: 'Everyone can create and challenge challengers.',
 };
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      refetchOnMount: false,
+      retry: false,
+      staleTime: 5 * 60 * 1000,
+    },
+  },
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -13,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      </body>
     </html>
   );
 }

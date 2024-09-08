@@ -48,3 +48,14 @@ next-env.d.ts
 *.iml
 *.idea/*.xml
 *.idea
+
+# yarn
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.cjs
+.pnp.loader.mjs
+.yarn/releases
+.yarn/sdks
+.yarn/patches
