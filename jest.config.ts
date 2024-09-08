@@ -10,7 +10,7 @@ const createJestConfig = nextJest({
 const config: Config = {
   verbose: true,
   coverageProvider: 'v8',
-  // setupFiles: ['./jest.polyfills.js'],
+  setupFiles: ['./jest.polyfills.js'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jsdom',
   moduleDirectories: ['node_modules', '<rootDir>/', 'tests'],
