@@ -34,11 +34,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const userInfo = userInfoResponse.data;
 
-    const { email, name, id: idk } = userInfo;
+    const { email, name: username, id: idk } = userInfo;
 
     const loginResponse = await axios.post(`${process.env.API_SERVER_URL}/v1/users/login`, {
       email,
-      name,
+      username,
       idk,
     });
 
@@ -47,7 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.setHeader('Set-Cookie', [
       `accessToken=${accessToken}; Path=/; Max-Age=${60 * 60 * 24}; Secure=false; SameSite=Strict`,
       `email=${encodeURIComponent(email)}; Path=/; Max-Age=${60 * 60 * 24}; Secure=false; SameSite=Strict`,
-      `name=${encodeURIComponent(name)}; Path=/; Max-Age=${60 * 60 * 24}; Secure=false; SameSite=Strict`,
+      `name=${encodeURIComponent(username)}; Path=/; Max-Age=${60 * 60 * 24}; Secure=false; SameSite=Strict`,
     ]);
 
     res.redirect('/');
