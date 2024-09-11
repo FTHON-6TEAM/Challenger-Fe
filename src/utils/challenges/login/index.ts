@@ -1,0 +1,1 @@
+export { getCookieValue } from './cookie';

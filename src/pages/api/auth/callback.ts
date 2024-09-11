@@ -36,13 +36,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { email, name: username, id: idk } = userInfo;
 
-    const loginResponse = await axios.post(`${process.env.API_SERVER_URL}/v1/users/login`, {
-      email,
-      username,
-      idk,
-    });
+    const loginResponse = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_SERVER_URL}/api/v1/users/login`,
+      {
+        email,
+        username,
+        idk,
+      },
+    );
 
-    const accessToken = loginResponse.headers['Authorization'];
+    const accessToken = loginResponse.headers['authorization'];
 
     res.setHeader('Set-Cookie', [
       `accessToken=${accessToken}; Path=/; Max-Age=${60 * 60 * 24}; Secure=false; SameSite=Strict`,

@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { getCookieValue } from '@/src/utils/challenges/login';
 
 interface UserProps {
   name: string;
@@ -16,11 +17,6 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactElement }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState<UserProps>();
-
-  const getCookieValue = (name: string) => {
-    const value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return value ? value[2] : null;
-  };
 
   const getUserFromCookies = useCallback(() => {
     const email = getCookieValue('email');
