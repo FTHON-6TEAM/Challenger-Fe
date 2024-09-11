@@ -1,6 +1,6 @@
 import { createTheme, PaletteOptions } from '@mui/material';
 
-const palette = {
+const palette: PaletteOptions = {
   text: {
     primary: '#23272D',
   },
@@ -17,6 +17,8 @@ const palette = {
   violet: {
     light: '#F2ECFF',
     main: '#504D7D',
+    dark: '#2E2D42',
+    contrastText: '#fff',
   },
 };
 
