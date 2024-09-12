@@ -1,10 +1,13 @@
 import { createTheme, PaletteOptions } from '@mui/material';
 
-const palette = {
+const palette: PaletteOptions = {
+  text: {
+    primary: '#23272D',
+  },
   primary: {
-    light: '#001E67',
+    light: '#006CA4',
     main: '#00468C',
-    dark: '#006CA4',
+    dark: '#001E67',
   },
   secondary: {
     light: '#78D8BB',
@@ -14,6 +17,8 @@ const palette = {
   violet: {
     light: '#F2ECFF',
     main: '#504D7D',
+    dark: '#2E2D42',
+    contrastText: '#fff',
   },
 };
 
