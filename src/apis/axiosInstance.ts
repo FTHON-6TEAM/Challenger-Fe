@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getCookieValue } from '@/src/utils/challenges/login';
+import { getCookieValue } from '@/utils/challenges/login';
 
 const API_SERVER_URL = process.env.NEXT_PUBLIC_API_SERVER_URL;
 
