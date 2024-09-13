@@ -12,6 +12,7 @@ export const axiosClientInstance = axios.create({
 axiosClientInstance.interceptors.request.use(
   async (config) => {
     const accessToken = getCookieValue('accessToken');
+    console.log('accessToken: ', accessToken);
 
     if (accessToken) {
       config.headers['Authorization'] = accessToken;
