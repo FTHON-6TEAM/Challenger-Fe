@@ -1,7 +1,8 @@
 import AddRounded from '@mui/icons-material/AddRounded';
 import CheckBoxRounded from '@mui/icons-material/CheckBoxRounded';
-import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import ClearRounded from '@mui/icons-material/ClearRounded';
+import DoneAllOutlinedIcon from '@mui/icons-material/DoneAllOutlined';
 import DeleteRounded from '@mui/icons-material/DeleteRounded';
 import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
@@ -13,7 +14,8 @@ const IconMap = {
   clear: ClearRounded,
   checkbox: CheckBoxRounded,
   delete: DeleteRounded,
-  checkCircle: CheckCircleRounded,
+  done: DoneAllOutlinedIcon,
+  checkCircle: CheckCircleOutlineOutlinedIcon,
   notification: NotificationsNoneRoundedIcon,
   menu: MenuRoundedIcon,
 } as const;
