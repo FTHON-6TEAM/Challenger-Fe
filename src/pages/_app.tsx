@@ -8,6 +8,7 @@ import { NextPage } from 'next';
 import Layout from '@/components/common/Layout';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
+import { AuthProvider } from '@/context';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,9 +41,11 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <QueryClientProvider client={queryClient}>
-        {getLayout(<Component {...pageProps} />)}
-      </QueryClientProvider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          {getLayout(<Component {...pageProps} />)}
+        </QueryClientProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
