@@ -8,6 +8,8 @@ import { NextPage } from 'next';
 import Layout from '@/components/common/Layout';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
+import { ConfigProvider } from 'antd';
+import koKR from 'antd/lib/locale/ko_KR';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,11 +40,13 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   dayjs.locale('ko');
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <QueryClientProvider client={queryClient}>
-        {getLayout(<Component {...pageProps} />)}
-      </QueryClientProvider>
-    </ThemeProvider>
+    <ConfigProvider locale={koKR}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <QueryClientProvider client={queryClient}>
+          {getLayout(<Component {...pageProps} />)}
+        </QueryClientProvider>
+      </ThemeProvider>
+    </ConfigProvider>
   );
 }
