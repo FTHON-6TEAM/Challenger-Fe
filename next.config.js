@@ -6,6 +6,15 @@ const nextConfig = {
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: '115.85.182.23:32468',
+        pathname: '**',
+      },
+    ],
+  },
   async rewrites() {
     return [
       {

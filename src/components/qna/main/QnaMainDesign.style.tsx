@@ -15,6 +15,7 @@ const QnAWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(1, minmax(300px, auto));
   margin-top: 10px;
+  gap: 10px;
 `;
 
 const QuestionContainer = styled.div`

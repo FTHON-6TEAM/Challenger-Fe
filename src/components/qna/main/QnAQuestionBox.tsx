@@ -1,5 +1,4 @@
 import {
-  Actions,
   QuestionBody,
   QuestionContainer,
   QuestionFooter,
@@ -9,25 +8,16 @@ import {
 } from '@/components/qna/main/QnaMainDesign.style';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
+import { formatRelativeTime } from '@/utils/date';
+import { QnAItem } from '@/types/qna/question';
 
-interface QnABoxProps {
-  idx: string;
-  username: string;
-  createdAt: string;
-  likeCount: number;
-  title: string;
-  content: string;
-  keyword: string;
-}
-
-// TODO: 현재 시간 기준으로 몇시간 전까지 출력
-export const QnAQuestionBox = (props: QnABoxProps) => {
-  const { idx, username, createdAt, likeCount, title, content, keyword } = props;
+export const QnAQuestionBox = (props: QnAItem) => {
+  const { questionIdx, username, createDate, title, content, codeName } = props;
   const router = useRouter();
 
   const handleQuestionClick = useCallback(() => {
-    router.push(`/qna/${idx}`);
-  }, []);
+    router.push(`/qna/${questionIdx}`);
+  }, [questionIdx, router]);
 
   return (
     <QuestionContainer onClick={handleQuestionClick}>
@@ -39,7 +29,7 @@ export const QnAQuestionBox = (props: QnABoxProps) => {
           <div>{title}</div>
           <div>
             <span>{username}</span>
-            <span>{createdAt}</span>
+            <span>{formatRelativeTime(createDate)}</span>
           </div>
         </UserInfo>
       </QuestionHeader>
@@ -47,10 +37,7 @@ export const QnAQuestionBox = (props: QnABoxProps) => {
         <p>{content}</p>
       </QuestionBody>
       <QuestionFooter>
-        <span style={{ fontSize: '.8rem' }}># {keyword}</span>
-        <Actions>
-          <span>👍 {likeCount}</span>
-        </Actions>
+        <span style={{ fontSize: '.8rem' }}># {codeName}</span>
       </QuestionFooter>
     </QuestionContainer>
   );

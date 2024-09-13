@@ -11,8 +11,6 @@ interface QnACreatePageProps {
 const QnACreatePage = ({ idx }: QnACreatePageProps) => {
   const auth = useAuth();
 
-  // TODO: 작성자라면 편집모드 전환
-
   return (
     <Layer>
       <Wrapper style={{ gap: '10px' }}>
@@ -26,9 +24,6 @@ const QnACreatePage = ({ idx }: QnACreatePageProps) => {
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const { idx } = context.query;
 
-  // TODO: 작성자 비교
-  // TODO: 게시글 조회 후 이메일 일치 비교
-  // TODO: 게시글 가져오기
   if (idx) {
     const response = await axios.get(`${process.env.API_SERVER_URL}/api/v1/questions/${idx}`);
   }

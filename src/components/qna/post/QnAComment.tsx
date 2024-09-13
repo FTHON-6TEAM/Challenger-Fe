@@ -1,45 +1,35 @@
-import { QnACommentProps } from '@/pages/qna/[id]';
 import { FormattedText } from '@/components/qna/common/FormattedText';
 import {
   CommentBody,
   CommentHeader,
   CommentHeaderSide,
 } from '@/components/qna/post/QnAComment.style';
-import { useAuth } from '@/context';
 import { Text } from '../common/component.styles';
+import { QnAComments } from '@/types/qna/answer';
+import { formatRelativeTime } from '@/utils/date';
+import { UserAvatar } from '@/components/qna/main/QnaMainDesign.style';
 
-export const QnAComment = (props: QnACommentProps) => {
-  const { username, comment, commentTime, email, postId } = props;
+export const QnAComment = (props: QnAComments) => {
+  const { answerIdx, content, createDate } = props;
 
-  const auth = useAuth();
-  const writerEmail = auth?.user?.email;
-
-  const isWriter = writerEmail === email;
-
+  // TODO: ai 답변 구분
   return (
     <div>
       <CommentHeader>
         <Text fontSize="16px" fontWeight="bold" color="#333">
-          {username}
+          유저{Math.floor(Math.random() + 100)}
+          <UserAvatar>
+            <span>icon</span>
+          </UserAvatar>
         </Text>
         <CommentHeaderSide>
           <Text fontSize="14px" color="#999">
-            {commentTime}
+            {formatRelativeTime(createDate)}
           </Text>
-          {isWriter && (
-            <>
-              <Text fontSize="14px" style={{ cursor: 'pointer' }}>
-                수정
-              </Text>
-              <Text fontSize="14px" style={{ cursor: 'pointer' }}>
-                삭제
-              </Text>
-            </>
-          )}
         </CommentHeaderSide>
       </CommentHeader>
       <CommentBody>
-        <FormattedText text={comment} />
+        <FormattedText text={content} />
       </CommentBody>
     </div>
   );

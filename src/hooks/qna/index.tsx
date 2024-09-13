@@ -1,17 +1,33 @@
-import { InfiniteData, useInfiniteQuery, UseInfiniteQueryResult } from '@tanstack/react-query';
-import { getQnAQuestions } from '@/apis/qna';
+import {
+  InfiniteData,
+  useInfiniteQuery,
+  UseInfiniteQueryResult,
+  useQuery,
+} from '@tanstack/react-query';
+import { getQnAComments, getQnAQuestions } from '@/apis/qna';
+import QnAQueryKeys from './queries/queryKeys';
+import { QnAItem } from '@/types/qna/question';
 
-const useQnAQuestions = (
-  hashTag: string,
-): UseInfiniteQueryResult<InfiniteData<QuestionListResponse[]>, Error> => {
+const useQnAQuestions = (hashTag: string): UseInfiniteQueryResult<InfiniteData<QnAItem>, Error> => {
   return useInfiniteQuery({
-    queryKey: ['qnaQuestionList'],
+    queryKey: [QnAQueryKeys.List, hashTag],
     queryFn: async ({ pageParam = 1 }) => await getQnAQuestions(pageParam, hashTag),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
-      return lastPage.last ? undefined : lastPage.pageable.pageNumber + 1;
+      return lastPage.data.last ? undefined : lastPage.data.pageable.pageNumber + 1;
     },
+    select: (data) => ({
+      pages: data.pages.flatMap((page) => page.data.content),
+      pageParams: data.pageParams,
+    }),
   });
 };
 
-export { useQnAQuestions };
+const useQnAComments = (questionIdx: number) => {
+  return useQuery({
+    queryKey: [QnAQueryKeys.Answers, questionIdx],
+    queryFn: async () => await getQnAComments(questionIdx),
+  });
+};
+
+export { useQnAQuestions, useQnAComments };

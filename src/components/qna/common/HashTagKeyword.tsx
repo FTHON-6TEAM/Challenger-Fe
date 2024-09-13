@@ -45,9 +45,16 @@ interface HashTagKeywordSelectorProps {
 const HashTagKeywordSelector = (props: HashTagKeywordSelectorProps) => {
   const { keywords, selectedKeyword, onChange } = props;
 
-  const handleHashTagClick = useCallback((keyword: string) => {
-    onChange(keyword);
-  }, []);
+  const handleHashTagClick = useCallback(
+    (keyword: string) => {
+      if (selectedKeyword === keyword) {
+        onChange('');
+      } else {
+        onChange(keyword);
+      }
+    },
+    [selectedKeyword, onChange],
+  );
 
   return (
     <Flex style={{ flexWrap: 'wrap', gap: '10px' }}>

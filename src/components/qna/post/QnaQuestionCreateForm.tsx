@@ -7,9 +7,6 @@ import { Flex, FlexColumn } from '@/components/qna/common/component.styles';
 import { QnaFileUpload } from '@/components/qna/post/QnaFileUpload';
 import { convertToFormData } from '@/utils/form';
 import { postQnAQuestion } from '@/apis/qna';
-import axios from 'axios';
-import header from '@/components/common/Header';
-import { getCookieValue } from '@/utils/challenges/login';
 
 interface FormValues {
   title: string;
@@ -18,17 +15,9 @@ interface FormValues {
   _file?: File | null;
 }
 
-const dummyKeywords = [
-  'default',
-  '환경 운동',
-  '플라스틱',
-  '재활용',
-  '캠페인',
-  '이벤트',
-  '가나다라마바사아자차카타파하',
-];
+const dummyKeywords = ['default', '환경 운동', '플라스틱', '재활용', '캠페인', '이벤트'];
 
-export const QnaQuestionCreateForm = ({ idx }: { idx: string }) => {
+export const QnaQuestionCreateForm = ({ idx }: { idx?: string }) => {
   const router = useRouter();
   const { register, handleSubmit, setValue, control } = useForm<FormValues>({
     defaultValues: {
