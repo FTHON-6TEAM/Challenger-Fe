@@ -2,8 +2,7 @@ import { QueryFunctionContext, useQuery } from '@tanstack/react-query';
 import ChallengeQueryKeys from './queryKeys';
 import { getApplyChallengeView } from '@/apis/challenges';
 import dayjs from 'dayjs';
-import { ChallengeApplyViewReponse, ChallengeContent, ChallengeItemList } from '@/types/challenges';
-import { AxiosError, AxiosResponse } from 'axios';
+import { ChallengeItemList } from '@/types/challenges';
 
 type ChallengetViewParams = {
   selectToday?: boolean;
