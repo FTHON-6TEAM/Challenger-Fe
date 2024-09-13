@@ -1,12 +1,15 @@
-import { Box, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import Icon from './Icon';
 import { HeaderContainer, IconWrapper, LogoWrapper } from './styles/layout';
+import { useRouter } from 'next/router';
 
 type HeaderProps = {
   openDrawer: () => void;
 };
 
 const Header = ({ openDrawer }: HeaderProps) => {
+  const router = useRouter();
+
   return (
     <HeaderContainer>
       <LogoWrapper>
@@ -22,7 +25,7 @@ const Header = ({ openDrawer }: HeaderProps) => {
       </LogoWrapper>
 
       <IconWrapper>
-        <IconButton>
+        <IconButton onClick={() => router.push('/challenge/create')}>
           <Icon name="add" fontSize="small" />
         </IconButton>
         <IconButton>
