@@ -44,9 +44,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <QueryClientProvider client={queryClient}>
-          <Suspense fallback={<div>Loading...</div>}>
-            {getLayout(<Component {...pageProps} />)}
-          </Suspense>
+          {getLayout(<Component {...pageProps} />)}
         </QueryClientProvider>
       </ThemeProvider>
     </ConfigProvider>

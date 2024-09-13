@@ -3,4 +3,5 @@ export { default as usePostChallenge } from './usePostChallenge';
 export { default as useGetChallengeList } from './useGetChallengeList';
 export { default as useGetApplyChallengeView } from './useGetApplyChallengeView';
 export { default as useGetAllApplyChallenges } from './useGetAllApplyChallenges';
-export { default as useApplyChallengItemMutation } from './useApplyChallengItemMutation';
+export { default as useApplyChallengeItemMutation } from './useApplyChallengeItemMutation';
+export { default as useGetChallengeDetail } from './useGetChallengeDetail';
