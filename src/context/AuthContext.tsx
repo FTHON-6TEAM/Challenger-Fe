@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { getCookieValue } from '@/src/utils/challenges/login';
+import { getCookieValue } from '@/utils/challenges/login';
 
 interface UserProps {
   name: string;

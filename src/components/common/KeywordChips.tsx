@@ -1,5 +1,6 @@
 import useGetCodeList from '@/hooks/code/useGetCodeList';
 import { Box, Chip, Skeleton } from '@mui/material';
+import { useCallback } from 'react';
 
 //TODO : color 추가
 
@@ -22,6 +23,8 @@ const KeywordChips = (props: KeywordChipsProps) => {
             key={item.code}
             label={item.title}
             disabled={disabled}
+            variant="outlined"
+            color="primary"
             onClick={() => onClickChip(item.code)}
           />
         ))}

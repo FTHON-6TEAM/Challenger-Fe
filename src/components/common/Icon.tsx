@@ -10,6 +10,9 @@ import { SvgIconProps } from '@mui/material/SvgIcon';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
+import OtherHousesIcon from '@mui/icons-material/OtherHouses';
+import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone';
+import QuestionAnswerTwoToneIcon from '@mui/icons-material/QuestionAnswerTwoTone';
 
 /* IconName: prop으로 받기 때문에 소문자 사용 */
 const IconMap = {
@@ -24,6 +27,8 @@ const IconMap = {
   assign: AssignmentIndOutlinedIcon,
   calendar: CalendarTodayOutlinedIcon,
   flag: FlagOutlinedIcon,
+  home: OtherHousesIcon,
+  qna: QuestionAnswerTwoToneIcon,
 } as const;
 
 type IconName = keyof typeof IconMap;

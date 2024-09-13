@@ -21,7 +21,7 @@ const Header = ({ openDrawer }: HeaderProps) => {
         >
           <Icon name="menu" fontSize="small" />
         </IconButton>
-        <div>{'logo'}</div>
+        <div>{'모두의 챌린지'}</div>
       </LogoWrapper>
 
       <IconWrapper>

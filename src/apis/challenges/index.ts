@@ -5,6 +5,7 @@ import {
   type ChallengeListResponse,
 } from '@/types/challenges';
 import { axiosClientInstance } from '../axiosInstance';
+import axios from 'axios';
 
 const challengeBaseUrl = '/challenge';
 

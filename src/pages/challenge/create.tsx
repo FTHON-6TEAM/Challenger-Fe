@@ -1,6 +1,7 @@
 import Form from '@/components/challenges/form/Form';
 import FormLayout from '@/components/common/FormLayout';
 import { Box } from '@mui/material';
+import React from 'react';
 
 const ChallengeCreatePage = () => {
   return (

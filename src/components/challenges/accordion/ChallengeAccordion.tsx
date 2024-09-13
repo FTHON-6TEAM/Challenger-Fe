@@ -3,6 +3,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+<<<<<<< HEAD
 import { useState } from 'react';
 import { ChallengeContent } from '@/types/challenges';
 import ChallengeDetail from './ChallengeDetail';
@@ -10,6 +11,12 @@ import { Box, LinearProgress, Stack } from '@mui/material';
 import Icon from '@/components/common/Icon';
 import { theme } from '@/styles/theme';
 import { Empty } from 'antd';
+=======
+import React, { useState } from 'react';
+import { ChallengeContent } from '@/types/challenges';
+import { Statistic } from 'antd';
+import ChallengeDetail from './ChallengeDetail';
+>>>>>>> main
 
 type AccordionProps = {
   data: ChallengeContent[];
@@ -22,10 +29,13 @@ const ChallengeAccordion = ({ data }: AccordionProps) => {
     setExpanded(isExpanded ? panel : null);
   };
 
+<<<<<<< HEAD
   if (!data) {
     return <Empty />;
   }
 
+=======
+>>>>>>> main
   return (
     <>
       {data?.map((challenge) => (
@@ -33,6 +43,7 @@ const ChallengeAccordion = ({ data }: AccordionProps) => {
           key={challenge.challengeIdx}
           expanded={expanded === challenge.challengeIdx}
           onChange={handleChange(challenge.challengeIdx)}
+<<<<<<< HEAD
           sx={{
             '& .MuiPaper-root': {
               border: '1px solid #8080801c',
@@ -83,6 +94,30 @@ const ChallengeAccordion = ({ data }: AccordionProps) => {
               endDate={challenge.challengeSummaryInfoResponse.endDate}
               isOpen={expanded === challenge.challengeIdx}
             />
+=======
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon fontSize="small" />}
+            aria-controls="panel1bh-content"
+            id="panel1bh-header"
+          >
+            <Typography sx={{ width: '33%', flexShrink: 0 }}>
+              {challenge.challengeSummaryInfoResponse.title}
+            </Typography>
+            <Statistic
+              title={'참여자 수 '}
+              value={challenge.challengeSummaryInfoResponse.joinCnt}
+              // formatter={formatter}
+            />
+            <Typography sx={{ color: 'text.secondary' }}>
+              {challenge.challengeSummaryInfoResponse.joinCnt}명이 함께 참여중이에요! (예쁘게 잘
+              보여주기)
+            </Typography>
+          </AccordionSummary>
+
+          <AccordionDetails>
+            <ChallengeDetail id={challenge.challengeIdx} isOpen={expanded === 'panel1'} />
+>>>>>>> main
           </AccordionDetails>
         </Accordion>
       ))}

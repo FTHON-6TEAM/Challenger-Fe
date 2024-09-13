@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { getWeekDays } from 'utils/date';
 import { StyledCalendar as Styled } from './styles/calendar';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const WeeklyCalendar: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(dayjs());

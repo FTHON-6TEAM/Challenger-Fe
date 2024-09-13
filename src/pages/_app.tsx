@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import { ConfigProvider } from 'antd';
 import koKR from 'antd/lib/locale/ko_KR';
+import { AuthProvider } from '@/context';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,9 +44,11 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     <ConfigProvider locale={koKR}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <QueryClientProvider client={queryClient}>
-          {getLayout(<Component {...pageProps} />)}
-        </QueryClientProvider>
+        <AuthProvider>
+          <QueryClientProvider client={queryClient}>
+            {getLayout(<Component {...pageProps} />)}
+          </QueryClientProvider>
+        </AuthProvider>
       </ThemeProvider>
     </ConfigProvider>
   );
