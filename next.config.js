@@ -10,7 +10,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: '115.85.182.23:32468',
+        hostname: '115.85.182.23',
+        port: '32468',
         pathname: '**',
       },
     ],
