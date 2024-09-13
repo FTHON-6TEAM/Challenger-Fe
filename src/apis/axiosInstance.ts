@@ -17,7 +17,7 @@ axiosClientInstance.interceptors.request.use(
       config.headers['Authorization'] = accessToken;
     }
 
-    config.headers['Content-Type'] = 'application/json';
+    // config.headers['Content-Type'] = 'application/json';
 
     return config;
   },
