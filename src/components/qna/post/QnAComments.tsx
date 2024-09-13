@@ -9,8 +9,6 @@ export const QnAComments = ({ questionIdx }: { questionIdx: number }) => {
 
   const commentCount = data?.length;
 
-  console.log('data: ', data);
-
   return (
     <CommentContainer>
       {!data ? (

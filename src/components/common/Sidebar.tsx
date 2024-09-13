@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { Drawer, ListContainer, ListSubheader } from './styles/layout';
 import Icon from './Icon';
+import { useRouter } from 'next/navigation';
 
 type MenuItem = {
   label: string;
@@ -30,13 +31,13 @@ const menuList: MenuList[] = [
   {
     subHeader: '챌린지',
     items: [
-      { label: '챌린지1', link: '/challenge1', icon: 'calendar' },
-      { label: '챌린지2', link: '/challenge2', icon: 'done' },
+      { label: '챌린지1', link: '/challenge', icon: 'calendar' },
+      { label: '챌린지2', link: '/challenge/2', icon: 'done' },
     ],
   },
   {
     subHeader: 'Q&A',
-    items: [{ label: 'QnA', link: '/questions', icon: 'qna' }],
+    items: [{ label: 'QnA', link: '/qna', icon: 'qna' }],
   },
 ];
 
@@ -48,6 +49,12 @@ type SidebarProps = {
 const Sidebar = ({ isOpen, closeDrawer }: SidebarProps) => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+
+  const router = useRouter();
+
+  const handleMenuClick = (link: string) => {
+    router.push(link);
+  };
 
   return (
     <Box gridArea={'sidebar'} component={'nav'} id="Sidebar">
@@ -63,7 +70,11 @@ const Sidebar = ({ isOpen, closeDrawer }: SidebarProps) => {
             <ListContainer key={`menu-${menu.subHeader}`} sx={{ p: 0 }}>
               <ListSubheader>{menu.subHeader}</ListSubheader>
               {menu.items.map((item) => (
-                <ListItemButton key={item.label} sx={{ gap: 1 }}>
+                <ListItemButton
+                  key={item.label}
+                  sx={{ gap: 1 }}
+                  onClick={() => handleMenuClick(item.link)}
+                >
                   <ListItemIcon sx={{ minWidth: 'auto' }}>
                     <Icon name={item.icon} fontSize="small" />
                   </ListItemIcon>

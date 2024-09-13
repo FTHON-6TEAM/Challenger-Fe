@@ -51,6 +51,11 @@ const QnAViewPage = ({ data }: { data: QuestionDetail }) => {
             <img
               src={`${process.env.NEXT_PUBLIC_API_SREVER_URL_DIRECT}/cms/file/image/link?idx=${fileIdx}`}
               alt="게시글"
+              style={{
+                maxWidth: '400px',
+                maxHeight: '300px',
+                width: '100%',
+              }}
             />
           </div>
         )}
