@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState, ChangeEvent, useCallback } from 'react';
+import { useState, ChangeEvent, useCallback, useMemo } from 'react';
 import { Button, IconButton } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -14,21 +14,26 @@ export const QnaFileUpload = ({ onFileSelected }: QnaFileUploadProps) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-  const allowedFileTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp'];
-
-  const handleFileChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files ? event.target.files[0] : null;
-    if (file) {
-      if (!allowedFileTypes.includes(file.type)) {
-        alert('지원하지 않는 파일 형식입니다.');
-        return;
-      }
-
-      setSelectedFile(file);
-      setPreviewUrl(URL.createObjectURL(file));
-      onFileSelected(file);
-    }
+  const allowedFileTypes = useMemo(() => {
+    return ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp'];
   }, []);
+
+  const handleFileChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files ? event.target.files[0] : null;
+      if (file) {
+        if (!allowedFileTypes.includes(file.type)) {
+          alert('지원하지 않는 파일 형식입니다.');
+          return;
+        }
+
+        setSelectedFile(file);
+        setPreviewUrl(URL.createObjectURL(file));
+        onFileSelected(file);
+      }
+    },
+    [allowedFileTypes, onFileSelected],
+  );
 
   const handleFileRemove = useCallback(() => {
     setSelectedFile(null);

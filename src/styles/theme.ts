@@ -1,4 +1,5 @@
 import { createTheme, PaletteOptions } from '@mui/material';
+import { typography } from './typography';
 
 const palette: PaletteOptions = {
   text: {
@@ -24,4 +25,5 @@ const palette: PaletteOptions = {
 
 export const theme = createTheme({
   palette,
+  typography,
 });

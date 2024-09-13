@@ -3,7 +3,10 @@ export interface QnAComments {
   answerIdx: number;
   content: string;
   createDate: string;
+  email: string;
+  isAi: boolean;
   modifyDate: string;
+  username: string;
 }
 
 /* qna 댓글 등록 */

@@ -27,6 +27,9 @@ const useQnAComments = (questionIdx: number) => {
   return useQuery({
     queryKey: [QnAQueryKeys.Answers, questionIdx],
     queryFn: async () => await getQnAComments(questionIdx),
+    select: ({ data }) => {
+      return data.element;
+    },
   });
 };
 

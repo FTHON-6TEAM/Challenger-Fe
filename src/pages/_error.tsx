@@ -4,6 +4,7 @@ type Props = {
   statusCode?: number;
 };
 
+// eslint-disable-next-line react/prop-types
 const Error: NextPage<Props> = ({ statusCode }) => {
   return (
     <div>

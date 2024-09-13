@@ -1,4 +1,5 @@
 import { axiosClientInstance } from '@/apis/axiosInstance';
+import axios from 'axios';
 
 const qnaBaseUrl = '/v1';
 
@@ -19,20 +20,12 @@ const getQnAQuestionDetail = async (id: string) => {
 
 /* 댓글 전체 조회 */
 const getQnAComments = async (id: number) => {
-  return await axiosClientInstance.get(`${qnaBaseUrl}/answers/${id}`);
+  return await axios.get(`http://115.85.182.23:32468/api${qnaBaseUrl}/answers/${id}`);
 };
 
 /* qna 질문 등록 */
 const postQnAQuestion = async (formData: unknown) => {
-  return await axiosClientInstance.post(
-    `${process.env.NEXT_PUBLIC_API_SREVER_URL_DIRECT}/api/v1/questions`,
-    formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    },
-  );
+  return await axios.post('http://115.85.182.23:32468/api/v1/questions', formData);
 };
 
 /* qna 댓글 등록 */

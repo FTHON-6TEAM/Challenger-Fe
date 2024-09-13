@@ -11,7 +11,7 @@ export const SIDEBAR_WIDTH = {
   DESKTOP: 240,
 };
 
-export const HEADER_HEIGHT = 42;
+export const HEADER_HEIGHT = 45;
 
 /* ------ main layout ------ */
 const Container = styled('div')(({ theme }) => ({
@@ -43,7 +43,7 @@ const MainContainer = styled(MuiContainer)(({ theme }) => ({
 
   [theme.breakpoints.up('sm')]: {
     paddingX: 0,
-    overflow: 'auto',
+    overflow: 'overlay',
     paddingTop: '32px',
   },
 }));
@@ -58,6 +58,10 @@ const HeaderContainer = styled('header')(({ theme }) => ({
   borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
   backgroundColor: 'white',
   height: HEADER_HEIGHT,
+
+  [theme.breakpoints.up('sm')]: {
+    paddingLeft: SIDEBAR_WIDTH.DESKTOP + 16,
+  },
 }));
 
 const LogoWrapper = styled('div')(({ theme }) => ({

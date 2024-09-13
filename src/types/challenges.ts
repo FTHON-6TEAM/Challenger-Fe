@@ -1,74 +1,91 @@
 type WeeklyChallengeResponse = {};
 
+type ChallengeUserItemSummaryResponse = {
+  idx: number;
+  completeDate: string;
+  completeYn: string;
+};
+
+export type ChallengeItemList = {
+  idx: number;
+  challengeIdx: number;
+  title: string;
+  createDate: string;
+  modifyDate: string;
+  challengeUserItemSummaryResponse: ChallengeUserItemSummaryResponse | null;
+};
+
+// 챌린지 상세 정보 - 랜딩 페이지
 export type ChallengeDetailResponse = {
   idx: number;
   code: string;
-  idk: string;
   startDate: string;
   endDate: string;
   successCnt: number;
   title: string;
   remark: string;
+  codeName: string;
+  username: string;
   createDate: string;
   modifyDate: string;
-  challengeItemList: [
-    {
-      idx: number;
-      challengeIdx: number;
-      title: string;
-      createDate: string;
-      modifyDate: string;
-    },
-  ];
+  challengeItemList: ChallengeItemList[];
+  join: boolean; // current user join status
+};
+
+// 내가 참여중인 챌린지 상세 정보, 랜딩 아코디언 디테일
+export type ChallengeApplyViewReponse = {
+  challengeUser: ChallengeContent;
+  itemList: Array<ChallengeItemList[]>;
+};
+
+type ChallengeSummaryInfoResponse = {
+  idx: number;
+  startDate: string;
+  endDate: string;
+  successCnt: number;
+  title: string;
+  remark: string;
+  fileIdx: number;
+  joinCnt: number;
+  createDate: string;
+  modifyDate: string;
 };
 
 export type ChallengeContent = {
   idx: number;
-  code: string;
   idk: string;
-  startDate: string;
-  endDate: string;
-  successCnt: number;
-  title: string;
-  remark: string;
+  challengeIdx: number;
   createDate: string;
   modifyDate: string;
-  challengeItemList: [
-    {
-      idx: number;
-      challengeIdx: number;
-      title: string;
-      createDate: string;
-      modifyDate: string;
-    },
-  ];
+  challengeSummaryInfoResponse: ChallengeSummaryInfoResponse;
 };
 
-export type ChallengeListResponse = {
-  totalPages: number;
-  totalElements: number;
-  size: number;
+// 내가 참여주인 챌린지 리스트 - 랜딩 페이지
+export type ChallengeApplyListResponse = {
   content: ChallengeContent[];
-  number: number;
-  sort: {
-    empty: boolean;
-    sorted: boolean;
-    unsorted: boolean;
-  };
-  numberOfElements: number;
   pageable: {
-    offset: number;
+    pageNumber: 0;
+    pageSize: 10;
     sort: {
-      empty: boolean;
-      sorted: boolean;
-      unsorted: boolean;
+      empty: true;
+      sorted: false;
+      unsorted: true;
     };
-    pageNumber: number;
-    pageSize: number;
-    paged: boolean;
-    unpaged: boolean;
+    offset: 0;
+    paged: true;
+    unpaged: false;
   };
-  first: boolean;
-  last: boolean;
-  empty: boolean;
+  totalPages: 1;
+  totalElements: 1;
+  last: true;
+  size: 10;
+  number: 0;
+  sort: {
+    empty: true;
+    sorted: false;
+    unsorted: true;
+  };
+  numberOfElements: 1;
+  first: true;
+  empty: false;
 };

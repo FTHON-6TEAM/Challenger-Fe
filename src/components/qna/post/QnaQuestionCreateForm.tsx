@@ -7,6 +7,7 @@ import { Flex, FlexColumn } from '@/components/qna/common/component.styles';
 import { QnaFileUpload } from '@/components/qna/post/QnaFileUpload';
 import { convertToFormData } from '@/utils/form';
 import { postQnAQuestion } from '@/apis/qna';
+import KeywordChips from '@/components/common/KeywordChips';
 
 interface FormValues {
   title: string;
@@ -32,13 +33,20 @@ export const QnaQuestionCreateForm = ({ idx }: { idx?: string }) => {
     const fileName = data?._file?.name;
 
     const requestFormat = {
-      title: data.title,
-      content: data.content,
-      publicCode: data.publicCode,
+      request: {
+        title: data.title,
+        content: data.content,
+        publicCode: data.publicCode,
+      },
     };
 
-    const convertFormData = convertToFormData(requestFormat);
-    const response = await postQnAQuestion(convertFormData);
+    const formData = new FormData();
+    formData.append('request', JSON.stringify(requestFormat));
+    formData.append('_file', data._file);
+    formData.append('_alt_file', data?._file?.name);
+
+    // const convertFormData = convertToFormData(requestFormat);
+    const response = await postQnAQuestion(formData);
   };
 
   const handleMoveQnAMainPage = () => {
@@ -52,13 +60,15 @@ export const QnaQuestionCreateForm = ({ idx }: { idx?: string }) => {
           name="publicCode"
           control={control}
           render={({ field }) => (
-            <HashTagKeywordSelector
-              keywords={dummyKeywords}
-              onChange={(keyword) => setValue('publicCode', keyword)}
-              selectedKeyword={field.value}
-            />
+            // <HashTagKeywordSelector
+            //   keywords={dummyKeywords}
+            //   onChange={(keyword) => setValue('publicCode', keyword)}
+            //   selectedKeyword={field.value}
+            // />
+            <KeywordChips onClickChip={(code) => setValue('publicCode', code)} />
           )}
         />
+
         <TextField
           fullWidth
           label="제목 입력"

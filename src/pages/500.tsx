@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 type Props = {
   error500Props: String;
 };
+// eslint-disable-next-line react/prop-types
 const Custom500: NextPage<Props> = ({ error500Props }) => {
   return (
     <>

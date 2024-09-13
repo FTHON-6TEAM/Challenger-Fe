@@ -41,14 +41,15 @@ export interface QuestionListResponse {
 
 /*  QnA 상세 */
 export interface QuestionDetail {
-  questionIdx: number;
-  code: string | null;
-  codeName: string | null;
-  title: string;
+  code: string;
+  codeName: string;
   content: string;
-  username: string;
-  userIdk: string;
-  fileIdx: string | null;
   createDate: string;
+  email: string;
+  fileIdx: number | null;
   modifyDate: string;
+  questionIdx: number;
+  title: string;
+  userIdk: string;
+  username: string;
 }
