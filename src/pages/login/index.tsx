@@ -21,7 +21,7 @@ const LoginPage = () => {
           }}
           onClick={handleMoveRootPage}
         >
-          모두의 챌린지
+          오늘의 챌린지
         </div>
         <Text>
           <h1>Get ready to</h1>
