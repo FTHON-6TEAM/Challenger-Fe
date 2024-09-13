@@ -54,4 +54,5 @@ const Button = styled.button`
   max-width: 320px;
   border-radius: 20px;
   box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+  margin: 0 auto;
 `;

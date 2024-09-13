@@ -1,18 +1,35 @@
+import React from 'react';
 import styled from '@emotion/styled';
-import { GoogleLoginButton } from '@/src/components/challenges/ui/button';
-import { googleLogin } from '@/src/utils/challenges/google';
+import { GoogleLoginButton } from '@/components/challenges/ui/button';
+import { googleLogin } from '@/utils/challenges/google';
+import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
+  const router = useRouter();
+
+  const handleMoveRootPage = () => {
+    router.push('/');
+  };
+
   return (
     <Layer>
       <Wrapper>
-        <div>logo - challenger</div>
+        <div
+          style={{
+            color: '#fff',
+            fontSize: '1.3rem',
+          }}
+          onClick={handleMoveRootPage}
+        >
+          모두의 챌린지
+        </div>
         <Text>
-          <h1>Challenger</h1>
-          <h1>Challenger</h1>
-          <h1>Challenger</h1>
-          <h1>Challenger</h1>
-          <h1>Challenger</h1>
+          <h1>Get ready to</h1>
+          <h1>supercharge</h1>
+          <h1>yor goal-</h1>
+          <h1>setting and</h1>
+          <h1>planning with</h1>
+          <h1>Al Planner.</h1>
         </Text>
         <GoogleLoginButton login={googleLogin} />
       </Wrapper>
@@ -20,13 +37,16 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+LoginPage.getLayout = (page: React.ReactNode) => {
+  return <>{page}</>;
+};
 
+export default LoginPage;
 
 const Layer = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: green;
+  background-color: #d68943;
 `;
 
 const Text = styled.div`
@@ -34,8 +54,8 @@ const Text = styled.div`
   font-weight: 600;
 
   h1 {
-    font-size: 2.3rem;
-    font-weight: 500;
+    font-size: 2.8rem;
+    font-weight: 600;
   }
 
   h1:nth-of-type(2) {
