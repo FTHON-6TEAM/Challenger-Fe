@@ -4,7 +4,7 @@ import { getApplyChallengeView } from '@/apis/challenges';
 import dayjs from 'dayjs';
 import { ChallengeItemList } from '@/types/challenges';
 
-type ChallengetViewParams = {
+type ChallengeViewParams = {
   selectToday?: boolean;
   challengeId: number;
   enabled?: boolean;
@@ -17,7 +17,7 @@ type QueryKey = [ChallengeQueryKeys.ApplyList, string | undefined, number];
 /**
  * @returns 내가 참여중인 챌린지의 아이템 정보
  */
-const useGetApplyChallengeView = (params: ChallengetViewParams) => {
+const useGetApplyChallengeView = (params: ChallengeViewParams) => {
   const { selectToday, challengeId, enabled = false } = params;
   const selectDate = selectToday ? dayjs().format('YYYY-MM-DD') : undefined;
 
