@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode, Suspense } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../styles/theme';
@@ -44,7 +44,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <QueryClientProvider client={queryClient}>
-          {getLayout(<Component {...pageProps} />)}
+          <Suspense fallback={<div>Loading...</div>}>
+            {getLayout(<Component {...pageProps} />)}
+          </Suspense>
         </QueryClientProvider>
       </ThemeProvider>
     </ConfigProvider>
