@@ -33,7 +33,7 @@ export type ChallengeDetailResponse = {
 };
 
 // 내가 참여중인 챌린지 상세 정보, 랜딩 아코디언 디테일
-export type ChallengeApplyViewReponse = {
+export type ChallengeApplyViewResponse = {
   challengeUser: ChallengeContent;
   itemList: Array<ChallengeItemList[]>;
 };
@@ -88,4 +88,8 @@ export type ChallengeApplyListResponse = {
   numberOfElements: 1;
   first: true;
   empty: false;
+};
+
+export type ChallengeListResponse = {
+  content: ChallengeDetailResponse[];
 };

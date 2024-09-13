@@ -1,7 +1,8 @@
 import {
   ChallengeApplyListResponse,
-  ChallengeApplyViewReponse,
+  ChallengeApplyViewResponse,
   ChallengeDetailResponse,
+  type ChallengeListResponse,
 } from '@/types/challenges';
 import { axiosClientInstance } from '../axiosInstance';
 import axios from 'axios';
@@ -9,17 +10,22 @@ import axios from 'axios';
 const challengeBaseUrl = '/challenge';
 
 /** 모든 챌린지 목록 조회 */
-export const getChallengeList = async (page: number) => {
-  return await axiosClientInstance.get(`${challengeBaseUrl}/list`, {
+export const getChallengeList = async () => {
+  return await axiosClientInstance.get<ChallengeListResponse>(`${challengeBaseUrl}/list`, {
     params: {
-      page,
+      page: 1,
+      // activeStatus: 'JOIN',
     },
   });
 };
 
 /** 챌린지 상세 조회 */
-export const getChallengeDetail = async () => {
-  return await axiosClientInstance.get<ChallengeDetailResponse>(`${challengeBaseUrl}/view`);
+export const getChallengeDetail = async (id: number) => {
+  return await axiosClientInstance.get<ChallengeDetailResponse>(`${challengeBaseUrl}/view`, {
+    params: {
+      idx: id,
+    },
+  });
 };
 
 /** 챌린지 등록 */
@@ -67,7 +73,7 @@ export const getApplyChallengeList = async () => {
 };
 
 export const getApplyChallengeView = async (selectDate: string | undefined, idx: number) => {
-  return await axiosClientInstance.get<ChallengeApplyViewReponse>(
+  return await axiosClientInstance.get<ChallengeApplyViewResponse>(
     `${challengeBaseUrl}/apply/view`,
     {
       params: {
@@ -83,7 +89,7 @@ export const postApplyChallenge = async (id: number) => {
   return await axiosClientInstance.post(
     `${challengeBaseUrl}/apply/ins`,
     {
-      idx: id,
+      challengeIdx: id,
     },
     {
       headers: {
@@ -101,11 +107,15 @@ type PostChallengeItemParams = {
 };
 
 /** 챌린지 아이템 참여 등록 (check-참여로 바꾸는 api) */
-export const postApplyChallengeItem = async (data: PostChallengeItemParams) => {
-  let formData = new FormData();
-  formData.append('challengeUserItemCreateRequest', JSON.stringify(data));
+export const postApplyChallengeItem = (data: PostChallengeItemParams) => {
+  const formData = new FormData();
+  formData.append('challengeUserItemCreateRequest', '2222');
 
-  return await axiosClientInstance.post(`${challengeBaseUrl}/apply/item/ins`, formData, {
+  // Object.keys(data).forEach((key) => {
+  //   formData.append(key, String(data[key as keyof PostChallengeItemParams]));
+  // });
+
+  return axiosClientInstance.post(`${challengeBaseUrl}/apply/item/ins`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },

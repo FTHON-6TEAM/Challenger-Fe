@@ -4,13 +4,15 @@ import WeeklyCalendar from 'components/challenges/WeeklyCalendar';
 import Head from 'next/head';
 import { Suspense, useState } from 'react';
 import { theme } from 'styles/theme';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 
-const ChallengeAccordion = dynamic(
-  () => import('@/components/challenges/accordion/ChallengeAccordion'),
-);
+// const ChallengeAccordion = dynamic(
+//   () => import('@/components/challenges/accordion/ChallengeAccordion'),
+// );
 
 import useGetAllApplyChallenges from '@/hooks/challenges/queries/useGetAllApplyChallenges';
+import ChallengeList from '@/components/challenges/ChallengeList';
+import ChallengeAccordion from '@/components/challenges/accordion/ChallengeAccordion';
 
 /**
  * TODO 디자인 맞추기, 폰트 적용, 파비콘 만들어서 적용, 로고 만들기
@@ -18,7 +20,7 @@ import useGetAllApplyChallenges from '@/hooks/challenges/queries/useGetAllApplyC
 
 function HomePage() {
   const [selectedChallenge, setSelectedChallenge] = useState('');
-  const [{ data }] = useGetAllApplyChallenges();
+  const [{ data }, { data: allChallenges }] = useGetAllApplyChallenges();
 
   const handleChallengeClick = (challenge: string) => {
     setSelectedChallenge(challenge);
@@ -54,7 +56,7 @@ function HomePage() {
                 },
               }}
             >
-              {['민정', '동현', '광혁', '종훈', 'f'].map((user, index) => (
+              {['민정', '동현', '광혁', '종훈', 'fLab'].map((user, index) => (
                 <Avatar key={index} alt={user}>
                   {user.slice(0, 2)}
                 </Avatar>
@@ -62,7 +64,7 @@ function HomePage() {
             </AvatarGroup>
 
             <Typography fontWeight={600} fontSize={14}>
-              {'윜챌은 뭘까'}
+              {'일주일동안 텀블러 3번 사용하기'}
             </Typography>
             <Box display={'flex'} alignItems={'center'} gap={0.5} mt={0.5}>
               <Box fontSize={12}>{`${'2'}개`}</Box>
@@ -82,7 +84,7 @@ function HomePage() {
             <ChallengeAccordion data={data} />
           </Stack>
           <Title>{'추천 챌린지'}</Title>
-          <Box>{'challenges list'}</Box>
+          <ChallengeList data={allChallenges} />
         </Suspense>
       </Stack>
     </>
