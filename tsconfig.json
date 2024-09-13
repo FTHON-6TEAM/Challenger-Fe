@@ -11,12 +11,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "allowUmdGlobalAccess": true,
+    "allowSyntheticDefaultImports": true,
     "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
+    "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"]
     }

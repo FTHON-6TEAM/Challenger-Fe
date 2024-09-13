@@ -22,6 +22,7 @@ const LoginPage = () => {
 
 export default LoginPage;
 
+
 const Layer = styled.div`
   width: 100%;
   height: 100vh;
