@@ -37,7 +37,7 @@ const challengeDefaultValues: ChallengeForm = {
   file: null,
 };
 
-const Form = () => {
+const CreateContainer = () => {
   const { mutate } = usePostChallenge();
   const methods = useForm({
     defaultValues: challengeDefaultValues,
@@ -80,7 +80,7 @@ const Form = () => {
   console.log('form', methods.watch());
 
   const onSubmit: SubmitHandler<ChallengeForm> = (data, e) => {
-    e.preventDefault();
+    e?.preventDefault();
     mutate(data, {
       onSuccess: () => {},
     });
@@ -98,17 +98,17 @@ const Form = () => {
 
         <Styled.Container>
           <Typography>{'시작일/종료일'}</Typography>
-          <DatePicker.RangePicker onChange={onChangeDate} />
+          <DatePicker.RangePicker onChange={onChangeDate} size="small" />
         </Styled.Container>
 
         <Styled.Container>
           <Typography>{'챌린지 설명'}</Typography>
-          <TextField name="remark" onChange={onChangeValue} />
+          <TextField name="remark" onChange={onChangeValue} size="small" />
         </Styled.Container>
 
         <Styled.Container>
           <Typography>{'챌린지 이미지'}</Typography>
-          <Styled.Input name="file" type="file" onChange={onChangeFile} />
+          <Styled.Input name="file" type="file" onChange={onChangeFile} size="small" />
         </Styled.Container>
 
         <Styled.Container>
@@ -139,4 +139,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default CreateContainer;

@@ -1,7 +1,12 @@
-import { getApplyChallengeList, getWeeklyChallenge } from '@/apis/challenges';
+import { getApplyChallengeList, getChallengeList, getWeeklyChallenge } from '@/apis/challenges';
 import { useSuspenseQueries } from '@tanstack/react-query';
 import ChallengeQueryKeys from './queryKeys';
-import { ChallengeContent } from '@/types/challenges';
+import {
+  ChallengeContent,
+  type ChallengeApplyListResponse,
+  type ChallengeListResponse,
+} from '@/types/challenges';
+import type { AxiosResponse } from 'axios';
 
 /**
  *
@@ -18,7 +23,13 @@ const useGetAllApplyChallenges = () => {
       {
         queryKey: [ChallengeQueryKeys.ApplyList],
         queryFn: getApplyChallengeList,
-        select: ({ data }): ChallengeContent[] => data.content,
+        select: ({ data }: AxiosResponse<ChallengeApplyListResponse>): ChallengeContent[] =>
+          data.content,
+      },
+      {
+        queryKey: [ChallengeQueryKeys.List],
+        queryFn: getChallengeList,
+        select: ({ data }: AxiosResponse<ChallengeListResponse>) => data.content,
       },
     ],
   });
